@@ -9,8 +9,11 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as blocks from "../blocks.js";
 import type * as http from "../http.js";
+import type * as init from "../init.js";
 import type * as myFunctions from "../myFunctions.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -20,8 +23,11 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  blocks: typeof blocks;
   http: typeof http;
+  init: typeof init;
   myFunctions: typeof myFunctions;
+  users: typeof users;
 }>;
 
 /**

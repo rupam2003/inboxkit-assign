@@ -3,14 +3,24 @@ import { convexAuth } from "@convex-dev/auth/server";
 import { DataModel } from "./_generated/dataModel";
 
 export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
-  providers: [Password<DataModel>({
-  profile(params, ctx) {
-    return {
-      email: params.email as string,
-      name: params.name as string,
-    };
-  },
-})],
+	providers: [
+		Password<DataModel>({
+			profile(params, ctx) {
+				return {
+					email: params.email as string,
+					name: params.name as string,
+					color: generateRandomColor(),
+				};
+			},
+		}),
+	],
 });
 
-
+const generateRandomColor = () => {
+	const letters = "0123456789ABCDEF";
+	let color = "#";
+	for (let i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+};
