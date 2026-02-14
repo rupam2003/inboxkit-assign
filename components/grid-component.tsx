@@ -64,7 +64,9 @@ export const GridComponent = () => {
 			<div className="absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t z-100 from-background to-transparent" />
 			<div className="absolute top-0 left-0 bottom-0 w-10 bg-linear-to-r z-100 from-background to-transparent" />
 			<div className="absolute top-0 right-0 bottom-0 w-10 bg-linear-to-l z-100 from-background to-transparent" />
-
+			<h1 className="absolute z-100 top-1 left-3 text-xs font-medium text-primary bg-primary/20 px-2 py-1 rounded-lg">
+				Captured blocks will be released after 30 seconds
+			</h1>
 			<section
 				ref={containerRef}
 				onMouseDown={onMouseDown}

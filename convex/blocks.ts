@@ -46,6 +46,13 @@ export const captureBlock = mutation({
 		const userId = await getAuthUserId(ctx);
 		if (!userId) throw new Error("User not Authenticated");
 		const expiresAt = Date.now() + 30000;
+		const block = await ctx.db.get("blocks", blockId);
+		if (block?.userId) {
+			return {
+				success: false,
+				message: "Block already captured",
+			};
+		}
 		await ctx.db.patch("blocks", blockId, {
 			userId,
 			expiresAt,
@@ -53,6 +60,10 @@ export const captureBlock = mutation({
 		await ctx.scheduler.runAt(expiresAt, internal.blocks.releaseBlock, {
 			blockId,
 		});
+		return {
+			success: true,
+			message: "Block captured successfully",
+		};
 	},
 });
 
